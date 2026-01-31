@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Tech House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .filter-bar {
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .search-container {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i data-lucide="home"></i> TECH HOUSE
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link active">Shop</a>
+                <a href="memberships.html" class="nav-link">Memberships</a>
+                <a href="wholesale.html" class="nav-link">Business</a>
+                <a href="customer-service.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <a href="checkout.html" class="cart-btn">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div class="shop-container">
+            <!-- Sidebar Filter -->
+            <aside class="shop-sidebar">
+                <h3 class="sidebar-title">Categories</h3>
+                <div class="filter-list" id="sidebar-filters">
+                    <!-- Categories will be injected by JS -->
+                </div>
+
+                <div style="margin-top: 3rem;">
+                    <h3 class="sidebar-title">Search</h3>
+                    <div style="position: relative;">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search appliances..."
+                            style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-family: inherit;">
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Shop Content -->
+            <div>
+                <h1 style="margin-bottom: 2rem; font-family: var(--font-serif);">Our Collection</h1>
+                <div class="product-grid" id="shop-products">
+                    <!-- Products injected by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Reusing footer from index.html (Simplified for this task) -->
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 Tech House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        let selectedCategory = 'All';
+        let searchQuery = '';
+
+        // Check URL for category
+        const urlParams = new URLSearchParams(window.location.search);
+        const catParam = urlParams.get('cat');
+        if (catParam) {
+            selectedCategory = catParam;
+        }
+
+        function renderShop() {
+            const container = document.getElementById('shop-products');
+            const filtered = products.filter(p => {
+                const matchesCat = selectedCategory === 'All' || p.category === selectedCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem;"><h3>No products found.</h3></div>';
+                return;
+            }
+
+            container.innerHTML = filtered.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category" style="text-transform: uppercase, letter-spacing: 1px; font-weight: 600;">${product.category}</span>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc" style="font-size: 0.9rem; margin-bottom: 1.5rem;">${product.description}</p>
+                        <div class="product-bottom">
+                            <span class="product-price">$${product.price.toFixed(2)}</span>
+                            <button onclick="addToCart(${product.id})" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        const sidebarCategories = [
+            { id: "All", label: "All Products" },
+            { id: "Kitchen Appliances", label: "Kitchen" },
+            { id: "Cleaning Appliances", label: "Cleaning" },
+            { id: "Heating & Cooling", label: "Climate Control" },
+            { id: "Personal Care", label: "Personal Care" },
+            { id: "Smart Home Appliances", label: "Smart Home" }
+        ];
+
+        function renderShop() {
+            const container = document.getElementById('shop-products');
+            const filtered = products.filter(p => {
+                const matchesCat = selectedCategory === 'All' || p.category === selectedCategory;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem;"><h3>No products found.</h3></div>';
+                return;
+            }
+
+            container.innerHTML = filtered.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">${product.category}</span>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc">${product.description}</p>
+                        <div class="product-bottom">
+                            <span class="product-price">$${product.price.toFixed(2)}</span>
+                            <button onclick="addToCart(${product.id})" class="btn btn-primary" style="padding: 0.6rem 1rem; font-size: 0.85rem;">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('sidebar-filters');
+            container.innerHTML = sidebarCategories.map(cat => `
+                <button onclick="filterCategory('${cat.id}')" class="filter-btn ${selectedCategory === cat.id ? 'active' : ''}">
+                    ${cat.label}
+                </button>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            selectedCategory = cat;
+            renderCategories();
+            renderShop();
+        }
+
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderShop();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderShop();
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

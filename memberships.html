@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memberships | Tech House</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .membership-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .membership-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            font-weight: bold;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .tier-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .tier-features {
+            text-align: left;
+            margin: 1.5rem 0 2.5rem;
+            flex: 1;
+        }
+
+        .tier-features li {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo"><i data-lucide="home"></i> TECH HOUSE</a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="memberships.html" class="nav-link active">Memberships</a>
+                <a href="wholesale.html" class="nav-link">Business</a>
+                <a href="customer-service.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <a href="checkout.html" class="cart-btn"><i data-lucide="shopping-cart"></i><span class="cart-count"
+                        id="cart-count">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container section">
+        <div style="text-align: center; margin-bottom: 5rem;">
+            <h1 style="font-family: var(--font-serif); font-size: 3.5rem; color: var(--primary); margin-bottom: 1rem;">
+                The Tech House Loyalty</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem;">Elevate your
+                lifestyle with exclusive benefits and priority service.</p>
+        </div>
+
+        <div class="membership-grid">
+            <!-- Bronze -->
+            <div class="membership-card">
+                <div
+                    style="width: 140px; height: 140px; margin: 0 auto; background: #fdf2f2; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid #cd7f32; box-shadow: var(--shadow-sm);">
+                    
+                </div>
+                <h2 style="font-family: var(--font-serif); margin-top: 2rem;">Bronze</h2>
+                <div class="tier-price" style="font-family: var(--font-serif);">Complimentary</div>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem;">The essential entry into
+                    the Tech House collective.</p>
+                <ul class="tier-features" style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Standard loyalty points</li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Basic member discounts</li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Seasonal newsletter</li>
+                </ul>
+                <button class="btn btn-outline"
+                    style="border: 2px solid var(--primary); margin-top: auto; color: var(--primary); font-weight: 600;">Join
+                    Bronze</button>
+            </div>
+
+            <!-- Silver -->
+            <div class="membership-card featured"
+                style="transform: scale(1.05); z-index: 10; border: 2px solid var(--primary);">
+                <div class="popular-badge"
+                    style="background: var(--primary); color: white; padding: 0.5rem 1rem; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); border-radius: 20px; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;">
+                    STANDART CHOICE</div>
+                <div
+                    style="width: 140px; height: 140px; margin: 0 auto; background: #f0f7ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid var(--primary-light); box-shadow: var(--shadow-sm);">
+                   
+                </div>
+                <h2 style="font-family: var(--font-serif); margin-top: 2rem;">Silver</h2>
+                <div class="tier-price" style="font-family: var(--font-serif);">$9.99<span
+                        style="font-size: 1rem; color: var(--text-muted);">/mo</span></div>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem;">Enhanced benefits for the
+                    active modern home.</p>
+                <ul class="tier-features" style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> 2x loyalty points earned</li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Priority concierge support
+                    </li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Exclusive monthly offers</li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> 50% reduced delivery rates
+                    </li>
+                </ul>
+                <button class="btn btn-primary" style="margin-top: auto; background: var(--primary); color: white;">Join
+                    Silver</button>
+            </div>
+
+            <!-- Gold -->
+            <div class="membership-card">
+                <div
+                    style="width: 140px; height: 140px; margin: 0 auto; background: #fffbeb; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid #ffd700; box-shadow: var(--shadow-sm);">
+                   
+                </div>
+                <h2 style="font-family: var(--font-serif); margin-top: 2rem;">Gold</h2>
+                <div class="tier-price" style="font-family: var(--font-serif);">$19.99<span
+                        style="font-size: 1rem; color: var(--text-muted);">/mo</span></div>
+                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem;">The ultimate all-inclusive
+                    appliance experience.</p>
+                <ul class="tier-features" style="border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> 3x points on every purchase
+                    </li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Unlimited free next-day
+                        delivery</li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> VIP access to new launches
+                    </li>
+                    <li><i data-lucide="check" size="18" color="var(--primary-light)"></i> Annual technical health check
+                    </li>
+                </ul>
+                <button class="btn btn-outline"
+                    style="border: 2px solid var(--primary); margin-top: auto; color: var(--primary); font-weight: 600;">Join
+                    Gold</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 Tech House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>
